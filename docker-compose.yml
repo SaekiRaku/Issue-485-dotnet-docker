@@ -1,0 +1,18 @@
+version: "3"
+services:
+  netcore-test:
+    container_name: netcore-test
+    image: microsoft/dotnet:2.1-runtime-alpine
+    volumes: 
+      - ./app:/app
+    command:
+      dotnet /app/WebApplication1.dll
+  nginx-test:
+    container_name: nginx-test
+    image: nginx:1.13.1-alpine
+    links: 
+      - netcore-test
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
