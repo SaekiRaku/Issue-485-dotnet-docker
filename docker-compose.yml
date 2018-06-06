@@ -3,6 +3,7 @@ services:
   netcore-test:
     container_name: netcore-test
     image: microsoft/dotnet:2.1-runtime-alpine
+    working_dir: /app
     volumes: 
       - ./app:/app
     command:
